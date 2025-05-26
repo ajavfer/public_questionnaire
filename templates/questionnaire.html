@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Consultancy Questionnaire</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { text-align: center; }
+        .form-group { margin-bottom: 20px; }
+        label { font-weight: bold; display: block; margin-bottom: 5px; }
+        input[type="text"], textarea { 
+            width: 100%; 
+            padding: 10px; 
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea { min-height: 100px; }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 30px auto;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .client-info {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Consultancy Questionnaire</h1>
+    <form action="/submit" method="post">
+        <div class="client-info">
+            <h2>Client Information</h2>
+            <div class="form-group">
+                <label for="client_name">Client/Company Name:</label>
+                <input type="text" id="client_name" name="client_name" required>
+            </div>
+            <div class="form-group">
+                <label for="client_email">Email:</label>
+                <input type="email" id="client_email" name="client_email" required>
+            </div>
+        </div>
+        
+        <h2>Questionnaire</h2>
+        {% for question in questions %}
+            <div class="form-group">
+                <label for="answer{{ loop.index }}">{{ question }}</label>
+                <textarea id="answer{{ loop.index }}" name="answer{{ loop.index }}" required></textarea>
+            </div>
+        {% endfor %}
+        <input type="submit" value="Submit Questionnaire">
+        
+        <div style="text-align: center; margin-top: 30px; color: #555; font-style: italic;">
+            Javier Ferrer Consulting Services
+        </div>
+    </form>
+</body>
+</html>
