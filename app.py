@@ -103,7 +103,7 @@ def submit():
         
         mail.send(msg)
         
-        return 'Thank you! The form has been submitted successfully. Soon you will receive an email from Javier Ferrer Consulting Services with the AI assessment', 200
+        return 'Thank you! The form has been submitted successfully. Soon you will receive an email from JFB Consulting Services with the AI assessment', 200
         
     except Exception as e:
         app.logger.error(f'Error in form submission: {str(e)}')

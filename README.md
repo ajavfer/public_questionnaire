@@ -45,40 +45,62 @@ python app.py
 
 ## Deployment
 
-Push to Render:
-- Create a new web service on Render
-- Connect your GitHub repository
-- Set environment variables in Render's dashboard
-- Deploy the application
-Details:
-Deploy to Render:
-Go to Render Dashboard
-Click "New" and select "Web Service"
-Connect your GitHub repository
-Configure the service:
-Name: your-app-name
-Region: choose the closest to your users
-Branch: main
-Build Command: pip install -r requirements.txt
-Start Command: gunicorn app:app
-Add environment variables:
-MAIL_SERVER: smtp.gmail.com
-MAIL_PORT: 587
-MAIL_USE_TLS: true
-MAIL_USERNAME: your-email@gmail.com
-MAIL_PASSWORD: your-app-specific-password
-DEVELOPER_EMAIL: your-email@gmail.com
+### Deploy on Railway
 
-For Gmail, you'll need to use an App Password instead of your regular password
+1. **Install Railway CLI** (if you want to deploy from your local machine):
+   ```bash
+   npm i -g @railway/cli
+   ```
 
-Make sure to add __pycache__/, venv/, and submissions/ to your .gitignore
-Consider using environment variables for sensitive data in production
+2. **Deploy using Railway** (choose one method):
 
-Initialize Git Repository: Open a terminal in your project directory and run:
+   **Option A: Deploy with Railway Button** (Recommended)
+   [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new)
+   
+   - Click the button above
+   - Select your GitHub repository
+   - Add your environment variables (see below)
+   - Click "Deploy"
+
+   **Option B: Deploy using Railway CLI**
+   ```bash
+   # Login to Railway
+   railway login
+   
+   # Link your project (run in project directory)
+   railway link
+   
+   # Deploy your project
+   railway up
+   ```
+
+3. **Set up Environment Variables** in Railway Dashboard:
+   - `MAIL_SERVER`: `smtp.gmail.com`
+   - `MAIL_PORT`: `587`
+   - `MAIL_USE_TLS`: `true`
+   - `MAIL_USERNAME`: Your Gmail address
+   - `MAIL_PASSWORD`: Your Gmail App Password (not your regular password)
+   - `DEVELOPER_EMAIL`: Email to receive submissions
+
+   > **Note for Gmail users**: You'll need to use an [App Password](https://support.google.com/accounts/answer/185833) instead of your regular password.
+
+4. **Access Your App**:
+   - After deployment, Railway will provide you with a public URL
+   - You can find this in your Railway dashboard under the "Deployments" tab
+
+### Local Development
+
+To run the application locally:
+
 ```bash
-git init
-git add .
-git commit -m "Initial commit"
+# Install dependencies
+pip install -r requirements.txt
+
+# Set environment variables (create a .env file)
+# See .env.example for reference
+
+# Run the application
+python app.py
 ```
 
 ## Project Structure
